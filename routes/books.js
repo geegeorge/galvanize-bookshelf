@@ -66,7 +66,7 @@ router.delete('/books/:id', (req, res, next) => {
         .where('id', req.params.id)
         .returning('*')
         .del()
-        .then(books => {
+        .then((books) => {
           delete books[0].id;
           res.send(humps.camelizeKeys(books[0]));
         });
