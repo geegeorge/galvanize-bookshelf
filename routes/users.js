@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt-as-promised');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-route.post('/users', (req, res, next) => {
+router.post('/users', (req, res, next) => {
 bcrypt.hash(req.body.password, 12)
         .then((hashed_password) => {
           res.send(200);
