@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt-as-promised');
 const router = express.Router();
 
 router.post('/users', (req, res, next) => {
-bcrypt.hash(req.body.password, 12)
+  bcrypt.hash(req.body.password, 12)
         .then((hashed_password) => {
           res.send(200);
         });
@@ -23,6 +23,6 @@ bcrypt.hash(req.body.password, 12)
         })
         .catch((err) => {
           next(err);
-        })
+        });
 })
 module.exports = router;
