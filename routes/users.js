@@ -12,10 +12,10 @@ router.post('/users', (req, res, next) => {
           res.send(200);
         });
 
-      return knex('users').insert({
-        email: req.body.email,
-          hashed_password: hashed_password
-        }, '*')
+  return knex('users').insert({
+    email: req.body.email,
+            hashed_password: hashed_password
+  }, '*')
         .then((users) => {
           user = users[0];
           delete user.hashed_password;

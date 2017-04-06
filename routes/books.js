@@ -8,14 +8,14 @@ const humps = require('humps');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.get('/books', (req, res, next) => {
-  knex('books')
+router.get('/', (req, res, next) => {
+    knex('books')
         .orderBy('title', 'asc')
         .then((books) => {
-          res.send(humps.camelizeKeys(books));
+            res.send(humps.camelizeKeys(books));
         })
         .catch((err) => {
-          next(err);
+            next(err);
         });
 });
 
@@ -41,7 +41,7 @@ router.post('/books', (req, res, next) => {
         })
         .returning(['id', 'title', 'author', 'genre', 'description', 'cover_url'])
         .then((book) => {
-          res.send(humps.camelizeKeys(book[0]));
+            res.send(humps.camelizeKeys(book[0]));
         });
 });
 router.patch('/books/:id', (req, res, next) => {
@@ -60,9 +60,9 @@ router.patch('/books/:id', (req, res, next) => {
         });
 });
 router.delete('/books/:id', (req, res, next) => {
-  let books;
+    let books;
 
-  knex('books')
+    knex('books')
         .where('id', req.params.id)
         .returning('*')
         .del()
